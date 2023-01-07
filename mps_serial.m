@@ -75,9 +75,9 @@ dummy_string = input("SerialTool is Ready to Collect a Sample. Press RETURN to C
 
 %% Sample Data
 % Steps to Collect a Data Sample:
-% 1. Write '' to Start the ADC Sampling
-% 2. Wait to Recieve '' which means the ADC has finished.
-% 3. Write '' to tell the device you would like the samples sent.
+% 1. Write 'bb' to Start the ADC Sampling
+% 2. Wait to Recieve '0xBB' which means the ADC has finished.
+% 3. Write 'cc' to tell the device you would like the samples sent.
 % 4. Read Back N samples over the serial bus.
 info_log("Sending Signal to begin ADC Sampling...")
 write(mps_device,"bb","string"); % Write 'aa' which should return AA to confirm connection.
@@ -88,8 +88,8 @@ else
     info_log("SerialTool timedout waiting for response from Device. Exiting...")
     return;
 end
-write(mps_device,"cc","string"); % Send Signal to Dump Data.
 num_8bit_int = 3*num_samples; % Serial packets are sent in 8b chunks, so we need 3x the number of 24b samples recieved.
+write(mps_device,"cc","string"); % Send Signal to Dump Data.
 returned_data = read(mps_device, num_8bit_int, "uint8"); % Read back all the samples.
 
 
