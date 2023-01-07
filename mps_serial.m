@@ -14,7 +14,21 @@ reference_voltage = 4.096; % Set ADC Reference Voltage Here. (Typ. 4.096V)
 
 %% How To Use The Script
 
+% Configure the parameters above to match the current Firmware and Board
+% Revision.
+% Press the run button.
+
+%% Script Startup
 welcome_message()
+write_spacing()
+
+%% Wait For User OK to Continue
+% input() waits for RETURN to be pressed before continuing. 
+
+% We do not care about dummy_string, which is whatever you entered before
+% pressing return.
+
+dummy_string = input("MPS SerialTool is ready. Press RETURN to Continue...");
 
 %% Automatic Port Detection
 
@@ -133,4 +147,10 @@ function welcome_message()
     disp(' / /|_/ / ___/\ \  _\ \/ -_) __/ / _ `/ / / / / _ \/ _ \/ / ')
     disp('/_/  /_/_/  /___/ /___/\__/_/ /_/\_,_/_/ /_/  \___/\___/_/ ')
     disp('University Of Minnesota | J.P. Wang Group | Version 0.1 ')
+end
+function write_spacing()
+    disp("...")
+    disp("...")
+    disp("...")
+    disp("...")
 end
